@@ -35,14 +35,6 @@ jobs:
         run: terraform fmt -check
         continue-on-error: true
 
-      - name: Terraform Workspace
-        id: workspace
-        run: |
-          if [[ $GITHUB_EVENT_NAME == "pull_request" ]]; then
-            echo "TF_WORKSPACE=$GITHUB_BASE_REF" >> $GITHUB_ENV
-          else
-            echo "TF_WORKSPACE=$GITHUB_REF_NAME" >> $GITHUB_ENV
-          fi
       - name: Terraform Init
         id: init
         run: terraform init
