@@ -1,0 +1,7 @@
+.terraform*
+**/.terraform
+images/*
+.git
+.idea
+node_modules
+.env
