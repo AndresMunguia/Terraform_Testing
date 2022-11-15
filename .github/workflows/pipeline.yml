@@ -1,7 +1,6 @@
 name: HashiCorp - Setup Terraform
 
-run-name: ${{ github.actor }} is updating the aws 
-structure 🚀
+run-name: ${{ github.actor }} is updating the aws structure.
 
 on:
   pull_request:
