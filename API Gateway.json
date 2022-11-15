@@ -1,0 +1,66 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Persons",
+    "version" : "2022-11-15 04:46:14UTC"
+  },
+  "servers" : [ {
+    "url" : "https://mq0o0rop3l.execute-api.us-west-2.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : ""
+      }
+    }
+  } ],
+  "paths" : {
+    "/getName" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /getName"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:464225100227:function:Test_with_DB/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/getPerson" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /getPerson"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:464225100227:function:DemoAppFunction/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/createPerson" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /createPerson"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:464225100227:function:DemoAppFunction/invocations",
+          "connectionType" : "INTERNET"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}
