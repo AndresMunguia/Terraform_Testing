@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  Update-Infra:
+  Update-infrastructure:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,8 +34,8 @@ jobs:
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
-        
-       - name: Terraform Workspace
+
+      - name: Terraform Workspace
         id: workspace
         run: |
           if [[ $GITHUB_EVENT_NAME == "pull_request" ]]; then
@@ -43,7 +43,6 @@ jobs:
           else
             echo "TF_WORKSPACE=$GITHUB_REF_NAME" >> $GITHUB_ENV
           fi
-
       - name: Terraform Init
         id: init
         run: terraform init
@@ -51,13 +50,14 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        
+
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
 
       - name: Terraform Apply
         id: apply
+        if: ${{ ( ( steps.plan.outcome == 'success' ) && ( github.event_name != 'pull_request' ) ) || ( github.event.pull_request.merged == true ) }}
         run: terraform apply -auto-approve
 
       - name: Terraform Output
